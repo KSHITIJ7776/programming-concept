@@ -1,0 +1,602 @@
+Assignment 4
+list probelm
+# ==========================================
+# 1. Student Marks Analysis using List
+# ==========================================
+
+marks = [78, 85, 92, 67, 88, 74, 95, 81, 69, 90]
+
+highest = max(marks)
+lowest = min(marks)
+average = sum(marks) / len(marks)
+
+print("Marks:", marks)
+print("Highest Mark:", highest)
+print("Lowest Mark:", lowest)
+print("Average Mark:", average)
+
+
+# ==========================================
+# 2. Shopping Cart Management using List
+# ==========================================
+
+cart = []
+
+while True:
+    print("\n1. Add Item")
+    print("2. Remove Item")
+    print("3. Display Items")
+    print("4. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        item = input("Enter item to add: ")
+        cart.append(item)
+        print(item, "added successfully.")
+
+    elif choice == 2:
+        item = input("Enter item to remove: ")
+        if item in cart:
+            cart.remove(item)
+            print(item, "removed successfully.")
+        else:
+            print("Item not found.")
+
+    elif choice == 3:
+        print("Shopping Cart:", cart)
+
+    elif choice == 4:
+        break
+
+    else:
+        print("Invalid Choice")
+
+
+# ==========================================
+# 3. Employee Record Using Tuple
+# ==========================================
+
+employees = (
+    (101, "Ram", "HR", 35000),
+    (102, "Shyam", "IT", 50000),
+    (103, "Amit", "Finance", 45000),
+    (104, "Ravi", "IT", 60000)
+)
+
+print("\nEmployee Details")
+
+for emp in employees:
+    print(emp)
+
+highest_salary_employee = max(employees, key=lambda x: x[3])
+
+print("\nEmployee with Highest Salary:")
+print(highest_salary_employee)
+
+
+# ==========================================
+# 4. Coordinate Distance Calculation using Tuple
+# ==========================================
+
+import math
+
+points = (
+    (3, 4),
+    (1, 1),
+    (5, 6),
+    (2, 2)
+)
+
+print("\nCoordinate Points")
+
+for point in points:
+    print(point)
+
+nearest = min(points, key=lambda p: math.sqrt(p[0]**2 + p[1]**2))
+
+print("\nNearest Point to Origin:")
+print(nearest)
+
+
+# ==========================================
+# 5. Student Information System using Directory
+# ==========================================
+
+students = {}
+
+while True:
+    print("\n1. Add Student")
+    print("2. Update Student")
+    print("3. Delete Student")
+    print("4. Display Students")
+    print("5. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        sid = input("Enter Student ID: ")
+        name = input("Enter Student Name: ")
+        students[sid] = name
+
+    elif choice == 2:
+        sid = input("Enter Student ID to Update: ")
+        if sid in students:
+            students[sid] = input("Enter New Name: ")
+        else:
+            print("Student not found.")
+
+    elif choice == 3:
+        sid = input("Enter Student ID to Delete: ")
+        if sid in students:
+            del students[sid]
+        else:
+            print("Student not found.")
+
+    elif choice == 4:
+        print("\nStudent Records")
+        for sid, name in students.items():
+            print(sid, ":", name)
+
+    elif choice == 5:
+        break
+
+    else:
+        print("Invalid Choice")
+
+
+# ==========================================
+# 6. Product Inventory Management using Directory
+# ==========================================
+
+inventory = {}
+
+while True:
+    print("\n1. Add Product")
+    print("2. Update Quantity")
+    print("3. Display Low Stock")
+    print("4. Display Inventory")
+    print("5. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        product = input("Enter Product Name: ")
+        qty = int(input("Enter Quantity: "))
+        inventory[product] = qty
+
+    elif choice == 2:
+        product = input("Enter Product Name: ")
+
+        if product in inventory:
+            qty = int(input("Enter New Quantity: "))
+            inventory[product] = qty
+        else:
+            print("Product not found.")
+
+    elif choice == 3:
+        print("\nLow Stock Products (Less than 10)")
+        for product, qty in inventory.items():
+            if qty < 10:
+                print(product, ":", qty)
+
+    elif choice == 4:
+        print("\nInventory")
+        for product, qty in inventory.items():
+            print(product, ":", qty)
+
+    elif choice == 5:
+        break
+
+    else:
+        print("Invalid Choice")
+
+
+# ==========================================
+# 7. Common Subjects Finder using set
+# ==========================================
+
+student1 = {"Math", "Physics", "Chemistry", "English"}
+student2 = {"Math", "Biology", "English", "Computer"}
+
+common_subjects = student1.intersection(student2)
+unique_subjects = student1.symmetric_difference(student2)
+all_subjects = student1.union(student2)
+
+print("\nStudent 1 Subjects:", student1)
+print("Student 2 Subjects:", student2)
+
+print("\nCommon Subjects:")
+print(common_subjects)
+
+print("\nUnique Subjects:")
+print(unique_subjects)
+
+print("\nAll Subjects:")
+print(all_subjects)
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+Assignment 3
+# ==========================================
+# PYTHON FUNCTIONS - PROBLEMS
+# ==========================================
+
+# 1. Factorial using Recursion
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+num = int(input("Enter a number for factorial: "))
+print("Factorial =", factorial(num))
+
+
+# ==========================================
+# 2. Prime Number Check
+# ==========================================
+
+def is_prime(n):
+    if n <= 1:
+        return False
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+
+    return True
+
+num = int(input("\nEnter a number to check prime: "))
+
+if is_prime(num):
+    print(num, "is a Prime Number")
+else:
+    print(num, "is not a Prime Number")
+
+
+# ==========================================
+# 3. Sum of Even Numbers in a List
+# ==========================================
+
+def sum_even(numbers):
+    total = 0
+
+    for num in numbers:
+        if num % 2 == 0:
+            total += num
+
+    return total
+
+numbers = [10, 15, 20, 25, 30, 35]
+
+print("\nList:", numbers)
+print("Sum of Even Numbers =", sum_even(numbers))
+
+
+# ==========================================
+# 4. Count Vowels and Consonants
+# ==========================================
+
+def count_vowels_consonants(text):
+    vowels = "aeiouAEIOU"
+    vowel_count = 0
+    consonant_count = 0
+
+    for ch in text:
+        if ch.isalpha():
+            if ch in vowels:
+                vowel_count += 1
+            else:
+                consonant_count += 1
+
+    return vowel_count, consonant_count
+
+text = input("\nEnter a string: ")
+
+vowels, consonants = count_vowels_consonants(text)
+
+print("Vowels =", vowels)
+print("Consonants =", consonants)
+
+
+# ==========================================
+# 5. Power of Number (x^y)
+# ==========================================
+
+def power(x, y):
+    result = 1
+
+    for i in range(y):
+        result *= x
+
+    return result
+
+x = int(input("\nEnter Base Number: "))
+y = int(input("Enter Power: "))
+
+print("Result =", power(x, y))
+
+
+# ==========================================
+# PYTHON LIST - PROBLEMS
+# ==========================================
+
+# 1. Largest and Smallest Element
+# ==========================================
+
+numbers = [10, 45, 23, 78, 12, 89, 34, 67, 5, 90]
+
+print("\nList =", numbers)
+print("Largest Element =", max(numbers))
+print("Smallest Element =", min(numbers))
+
+
+# ==========================================
+# 2. Remove Duplicates Without Set
+# ==========================================
+
+numbers = [1, 2, 3, 2, 4, 1, 5, 3, 6]
+
+unique = []
+
+for num in numbers:
+    if num not in unique:
+        unique.append(num)
+
+print("\nOriginal List =", numbers)
+print("List After Removing Duplicates =", unique)
+
+
+# ==========================================
+# 3. Reverse List Without reverse()
+# ==========================================
+
+numbers = [10, 20, 30, 40, 50]
+
+reversed_list = []
+
+for i in range(len(numbers) - 1, -1, -1):
+    reversed_list.append(numbers[i])
+
+print("\nOriginal List =", numbers)
+print("Reversed List =", reversed_list)
+
+
+# ==========================================
+# 4. Merge Two Lists and Sort
+# ==========================================
+
+list1 = [10, 30, 50]
+list2 = [20, 40, 60]
+
+merged = list1 + list2
+merged.sort()
+
+print("\nMerged and Sorted List =", merged)
+
+
+# ==========================================
+# 5. Count Frequency of Elements
+# ==========================================
+
+numbers = [1, 2, 1, 3, 2, 1, 4, 3, 2]
+
+frequency = {}
+
+for num in numbers:
+    if num in frequency:
+        frequency[num] += 1
+    else:
+        frequency[num] = 1
+
+print("\nElement Frequencies:")
+
+for key, value in frequency.items():
+    print(key, "appears", value, "times")
+///////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+OOP'S
+object and classes
+# 1. Student Information Program
+
+class Student:
+    def __init__(self, name, roll_no):
+        self.name = name
+        self.roll_no = roll_no
+
+    def display(self):
+        print("Name:", self.name)
+        print("Roll No:", self.roll_no)
+
+s1 = Student("Rahul", 101)
+s1.display()
+
+
+# 2. Employee Salary Program
+
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    def show(self):
+        print("Employee Name:", self.name)
+        print("Salary:", self.salary)
+
+e1 = Employee("John", 50000)
+e1.show()
+
+
+# 3. Rectangle Area Program
+
+class Rectangle:
+    def __init__(self, length, breadth):
+        self.length = length
+        self.breadth = breadth
+
+    def area(self):
+        return self.length * self.breadth
+
+r1 = Rectangle(10, 5)
+print("Area =", r1.area())
+
+
+# 4. Bank Account Program
+
+class BankAccount:
+    def __init__(self, balance):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+
+    def display(self):
+        print("Balance:", self.balance)
+
+acc = BankAccount(1000)
+acc.deposit(500)
+acc.display()
+
+
+# 5. Car Information Program
+
+class Car:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def show(self):
+        print("Brand:", self.brand)
+        print("Model:", self.model)
+
+c1 = Car("Toyota", "Fortuner")
+c1.show()
+
+
+# 6. Calculator Program Using OOP
+
+class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+c = Calculator()
+
+print("Addition =", c.add(10, 5))
+print("Subtraction =", c.subtract(10, 5))
+
+
+# 7. Circle Area Program
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+c1 = Circle(7)
+print("Area =", c1.area())
+
+
+# 8. Book Details Program
+
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    def display(self):
+        print("Title:", self.title)
+        print("Author:", self.author)
+
+b1 = Book("Python Basics", "ABC")
+b1.display()
+
+
+# 9. Voting Eligibility Program
+
+class Person:
+    def __init__(self, age):
+        self.age = age
+
+    def check(self):
+        if self.age >= 18:
+            print("Eligible for Voting")
+        else:
+            print("Not Eligible")
+
+p1 = Person(20)
+p1.check()
+
+
+# 10. Marks and Grade Program
+
+class Result:
+    def __init__(self, marks):
+        self.marks = marks
+
+    def grade(self):
+        if self.marks >= 90:
+            print("Grade A")
+        elif self.marks >= 75:
+            print("Grade B")
+        else:
+            print("Grade C")
+
+r1 = Result(85)
+r1.grade()
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+Socket programming
+Server code
+import socket
+
+# Create socket
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind IP and Port
+server.bind(("0.0.0.0", 5000))
+
+# Listen for connections
+server.listen(1)
+
+print("Server waiting for connection...")
+
+# Accept client connection
+client_socket, address = server.accept()
+
+print("Connected by:", address)
+
+# Receive data
+data = client_socket.recv(1024).decode()
+print("Client:", data)
+
+# Send response
+client_socket.send("Hello Client".encode())
+
+# Close connections
+client_socket.close()
+server.close()
+.................................................................
+.................................................................
+client code
+import socket
+
+# Create socket
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to server
+client.connect(("127.0.0.1", 5000))
+
+# Send data
+client.send("Hello Server".encode())
+
+# Receive response
+response = client.recv(1024).decode()
+print("Server:", response)
+
+# Close socket
+client.close()
