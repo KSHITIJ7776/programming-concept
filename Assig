@@ -553,50 +553,26 @@ r1.grade()
 Socket programming
 Server code
 import socket
-
-# Create socket
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Bind IP and Port
-server.bind(("0.0.0.0", 5000))
-
-# Listen for connections
-server.listen(1)
-
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(("192.168.5.235", 8888))
+server_socket.listen(1)
 print("Server waiting for connection...")
-
-# Accept client connection
-client_socket, address = server.accept()
-
-print("Connected by:", address)
-
-# Receive data
-data = client_socket.recv(1024).decode()
-print("Client:", data)
-
-# Send response
-client_socket.send("Hello Client".encode())
-
-# Close connections
+client_socket, addr = server_socket.accept()
+print("Connected to:", addr)
+message = "Hello Client!"
+client_socket.send(message.encode())
+data = client_socket.recv(1024)
+print("Message from client:", data.decode())
 client_socket.close()
-server.close()
+server_socket.close()
 .................................................................
 .................................................................
 client code
 import socket
-
-# Create socket
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# Connect to server
-client.connect(("127.0.0.1", 5000))
-
-# Send data
-client.send("Hello Server".encode())
-
-# Receive response
-response = client.recv(1024).decode()
-print("Server:", response)
-
-# Close socket
-client.close()
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(("192.168.56.1", 8888))
+data = client_socket.recv(1024)
+print("Message from server:", data.decode())
+message = "Hello Server! Client received your message."
+client_socket.send(message.encode())
+client_socket.close()
